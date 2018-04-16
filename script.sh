@@ -16,6 +16,7 @@ fdisk -l > fdisk
 top -b -n1 > top
 free > free  
 iptables -L > iptables
+/sbin/SUSEfirewall2 > firewall
 #iostat  > iostat
 
 sleep 2
@@ -45,6 +46,9 @@ zypper patches | grep important > securityUpdateImportant 2>&1
 zypper patches | grep moderate > securityUpdateModerate 2>&1
 zypper patches | grep low > securityUpdateLow 2>&1
 zypper ve > parchesdependencias 2>&1
+zypper pchk > pchk 2>&1
+zypper patches > patches 2>&1
+zypper repos > repositorios 2>&1
 
 sleep 1
 
