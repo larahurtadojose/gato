@@ -15,11 +15,12 @@ df -h > df
 fdisk -l > fdisk  
 top -b -n1 > top
 free > free  
-iostat  > iostat
+iptables -L > iptables
+#iostat  > iostat
 
 sleep 2
 vmstat > vmstat
-hostname --fqdn > hostname  
+#hostname --fqdn > hostname  
 ifconfig > ifconfig  
 lsmod > lsmod  
 lspci > lspci  
@@ -35,14 +36,15 @@ cat /proc/meminfo > meminfo
 cat /proc/cpuinfo > cpuinfo  
 
 #Actualizaciones de Seguridad
-yum check-update > update 2>&1
-yum updateinfo summary > updateInfoSummary 2>&1
-yum updateinfo list security > listSecurityUpdate 2>&1
-yum --security check-update > securityUpdate 2>&1
-yum --security --sec-severity=Critical check-update > securityUpdateCritical 2>&1
-yum --security --sec-severity=Important check-update > securityUpdateImportant 2>&1
-yum --security --sec-severity=Moderate check-update > securityUpdateModerate 2>&1
-yum --security --sec-severity=Low check-update > securityUpdateLow 2>&1
+zypper list-updates -a > update 2>&1
+zypper patch-check > updateInfoSummary 2>&1
+zypper patches > listSecurityUpdate 2>&1
+zypper patches | grep security > securityUpdate 2>&1
+#yum --security --sec-severity=Critical check-update > securityUpdateCritical 2>&1
+zypper patches | grep important > securityUpdateImportant 2>&1
+zypper patches | grep moderate > securityUpdateModerate 2>&1
+zypper patches | grep low > securityUpdateLow 2>&1
+zypper ve > parchesdependencias 2>&1
 
 sleep 1
 
@@ -51,7 +53,10 @@ cd etc
 cp /etc/fstab .
 cp /etc/security/limits.conf .  
 cp /etc/redhat-release .  
-cp /etc/sysctl.conf .  
+cp /etc/hosts.allow .
+cp /etc/hosts.deny .
+cp /etc/sysctl.conf . 
+cp /etc/crontab .
 mkdir sysconfig/network-scripts -p  
 cd sysconfig  
 cp /etc/sysconfig/* . -R  
