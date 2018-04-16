@@ -56,7 +56,7 @@ mkdir etc
 cd etc  
 cp /etc/fstab .
 cp /etc/security/limits.conf .  
-cp /etc/redhat-release .  
+#cp /etc/redhat-release .  
 cp /etc/hosts.allow .
 cp /etc/hosts.deny .
 cp /etc/sysctl.conf . 
