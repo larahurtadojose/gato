@@ -16,8 +16,8 @@ fdisk -l > fdisk
 top -b -n1 > top
 free > free  
 iptables -L > iptables
-/sbin/SUSEfirewall2 > firewall
-#iostat  > iostat
+SUSEfirewall2 > firewall
+cat /etc/passwd > passwd
 
 sleep 2
 vmstat > vmstat
@@ -29,6 +29,7 @@ cat /proc/mounts > mount
 netstat -tlpn > netstat  
 ps auxww > ps  
 rpm -qa > rpm-qa  
+rpm --obsoletes > obsoletes
 
 ulimit -a > ulimit  
 uname -a > uname  
@@ -40,22 +41,18 @@ cat /proc/cpuinfo > cpuinfo
 zypper list-updates -a > update 2>&1
 zypper patch-check > updateInfoSummary 2>&1
 zypper patches > listSecurityUpdate 2>&1
-zypper patches | grep security > securityUpdate 2>&1
-#yum --security --sec-severity=Critical check-update > securityUpdateCritical 2>&1
-zypper patches | grep important > securityUpdateImportant 2>&1
-zypper patches | grep moderate > securityUpdateModerate 2>&1
-zypper patches | grep low > securityUpdateLow 2>&1
 zypper ve > parchesdependencias 2>&1
 zypper pchk > pchk 2>&1
 zypper patches > patches 2>&1
 zypper repos > repositorios 2>&1
+chage -l root > expirarcontrasenas
 
 sleep 1
 
 mkdir etc  
 cd etc  
 cp /etc/fstab .
-cp /etc/security/limits.conf .  
+cp /etc/security/limits.conf . 
 cp /etc/hosts.allow .
 cp /etc/hosts.deny .
 cp /etc/sysctl.conf . 
