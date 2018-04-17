@@ -18,6 +18,11 @@ free > free
 iptables -L > iptables
 SUSEfirewall2 > firewall
 cat /etc/passwd > passwd
+lsblk -f > lsblk
+blkid > blkid
+pvdisplay > pvdisplay
+vgdisplay > vgdisplay
+lvdisplay > lvdisplay
 
 sleep 2
 vmstat > vmstat
